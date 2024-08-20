@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { useSongs } from './api/queries';
 import TrackItem from './components/TrackItem';
 import { Track } from './types';
+import TrackPlayer from './components/TrackPlayer';
 
 function App() {
-  const { data } = useSongs();
+  const { data: allSongs } = useSongs();
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
 
   return (
-    <div className="h-screen p-10 bg-zinc-800 flex">
+    <div className="h-screen p-10 bg-zinc-800 flex gap-10">
       <div>
-        {data?.map((item) => (
+        {allSongs?.map((item) => (
           <TrackItem
             item={item}
             selected={item.id === selectedTrack?.id}
@@ -18,6 +19,7 @@ function App() {
           />
         ))}
       </div>
+      {selectedTrack && <TrackPlayer track={selectedTrack} />}
     </div>
   );
 }

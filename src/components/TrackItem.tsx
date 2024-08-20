@@ -11,7 +11,7 @@ function TrackItem({ item, selected, onSelect }: TrackItemProps) {
   return (
     <button
       className={clsx(
-        'p-4 rounded-lg flex items-center gap-4 text-white cursor-pointer w-full transition-colors',
+        'p-4 rounded-lg min-w-96 flex items-center gap-4 text-white cursor-pointer w-full transition-colors',
         {
           'bg-white/10': selected,
           'bg-transparent': !selected,
@@ -27,10 +27,10 @@ function TrackItem({ item, selected, onSelect }: TrackItemProps) {
         />
       </div>
       <div className="flex-1 flex flex-col items-start">
-        <p className="text-lg line-clamp-1">{item.name}</p>
-        <p className="text-sm opacity-60">{item.artist}</p>
+        <p className="text-lg line-clamp-1 text-left">{item.name}</p>
+        <p className="text-sm text-white/60">{item.artist}</p>
       </div>
-      <div className="shrink-0 opacity-60 text-lg">5:32</div>
+      <div className="shrink-0 text-white/60 text-lg">5:32</div>
     </button>
   );
 }
