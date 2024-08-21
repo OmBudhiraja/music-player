@@ -50,10 +50,10 @@ function App() {
       style={{
         background: `linear-gradient(to bottom right, ${selectedTrack?.accent} 0%, #000 100%)`,
       }}
-      className="default-gradient h-screen transition-colors p-5 md:p-8 bg-zinc-800 flex flex-col items-center lg:flex-row lg:gap-20 xl:gap-28 gap-8"
+      className="default-gradient h-screen transition-colors p-4 md:p-8 bg-zinc-800 flex flex-col items-center lg:flex-row xl:gap-28 gap-4"
     >
       <Sidebar />
-      <div className="flex h-full items-center justify-center md:justify-between lg:justify-center w-full lg:gap-20 xl:gap-28 gap-8 md:gap-6 overflow-hidden">
+      <div className="flex h-full items-center justify-center lg:justify-center w-full lg:gap-20 xl:gap-28 gap-8 md:gap-12 overflow-hidden">
         <TrackList
           tracks={activeTabSongs}
           selectedTrack={selectedTrack}

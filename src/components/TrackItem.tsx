@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import { type Track } from '../types';
+import { baseUrl } from '../utils/constants';
 
 type TrackItemProps = {
   item: Track;
@@ -22,7 +23,7 @@ function TrackItem({ item, selected, onSelect }: TrackItemProps) {
       <div className="h-12 w-12 overflow-hidden shrink-0">
         <img
           className="w-full h-full object-cover rounded-full"
-          src={`https://cms.samespace.com/assets/${item.cover}`}
+          src={`${baseUrl}/assets/${item.cover}`}
           alt=""
         />
       </div>

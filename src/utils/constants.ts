@@ -7,3 +7,5 @@ export enum Tabs {
 }
 
 export type Tab = Tabs.ForYou | Tabs.TopTracks;
+
+export const baseUrl = 'https://cms.samespace.com';

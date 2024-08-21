@@ -43,23 +43,29 @@ function TrackList({
   const [animationParent] = useAutoAnimate();
 
   return (
-    <div className="h-full flex flex-col gap-6 overflow-hidden w-80 lg:w-96 max-w-full">
-      <div className="flex items-center gap-6 font-semibold px-2">
+    <div className="h-full flex flex-col gap-3 xs:gap-6 overflow-hidden flex-1 md:flex-auto md:w-80 lg:w-96 max-w-full">
+      <div className="flex items-center gap-4 xs:gap-6 font-semibold px-2">
         <button
           onClick={() => setActiveTab(Tabs.ForYou)}
-          className={clsx('capitalize text-2xl outline-none p-2 rounded-md focus:bg-white/10', {
-            'text-white': activeTab === Tabs.ForYou,
-            'text-white/50': activeTab !== Tabs.ForYou,
-          })}
+          className={clsx(
+            'capitalize text-xl xs:text-2xl outline-none p-2 rounded-md focus:bg-white/10',
+            {
+              'text-white': activeTab === Tabs.ForYou,
+              'text-white/50': activeTab !== Tabs.ForYou,
+            }
+          )}
         >
           {Tabs.ForYou}
         </button>
         <button
           onClick={() => setActiveTab(Tabs.TopTracks)}
-          className={clsx('capitalize text-2xl outline-none p-2 rounded-md focus:bg-white/10', {
-            'text-white': activeTab === Tabs.TopTracks,
-            'text-white/50': activeTab !== Tabs.TopTracks,
-          })}
+          className={clsx(
+            'capitalize text-xl xs:text-2xl outline-none p-2 rounded-md focus:bg-white/10',
+            {
+              'text-white': activeTab === Tabs.TopTracks,
+              'text-white/50': activeTab !== Tabs.TopTracks,
+            }
+          )}
         >
           {Tabs.TopTracks}
         </button>
@@ -75,7 +81,7 @@ function TrackList({
         <SearchIcon size={24} className="absolute right-8 top-1/2 -translate-y-1/2 text-white/60" />
       </div>
       <div
-        className="h-full overflow-y-auto overflow-x-hidden custom-scrollbar"
+        className="h-full overflow-y-auto overflow-x-hidden custom-scrollbar mt-4  xs:mt-0"
         ref={animationParent}
       >
         {filteredTracks.map((item) => (
