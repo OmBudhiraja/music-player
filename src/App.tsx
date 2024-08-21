@@ -5,6 +5,7 @@ import { Track } from './types';
 import { type Tab, Tabs } from './utils/constants';
 import Sidebar from './components/Sidebar';
 import TrackList from './components/TrackList';
+import { useMediaQuery } from './hooks/useMediaQuery';
 
 function App() {
   const { data: allSongs } = useSongs();
@@ -12,6 +13,8 @@ function App() {
 
   const [activeTab, setActiveTab] = useState<Tab>(Tabs.ForYou);
   const [activeTabSongs, setActiveTabSongs] = useState<Track[]>([]);
+
+  const isMobile = !useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
     if (!allSongs) return;
@@ -48,9 +51,11 @@ function App() {
   return (
     <div
       style={{
-        background: `linear-gradient(to bottom right, ${selectedTrack?.accent} 0%, #000 100%)`,
+        background: isMobile
+          ? 'rgba(0, 0, 0, 0.95)'
+          : `linear-gradient(to bottom right, ${selectedTrack?.accent} 0%, #000 100%)`,
       }}
-      className="default-gradient h-screen transition-colors p-4 md:p-8 bg-zinc-800 flex flex-col items-center lg:flex-row xl:gap-28 gap-4"
+      className="default-gradient h-screen transition-colors duration-700 p-4 md:p-8 flex flex-col items-center lg:flex-row xl:gap-28 gap-4"
     >
       <Sidebar />
       <div className="flex h-full items-center justify-center lg:justify-center w-full lg:gap-20 xl:gap-28 gap-8 md:gap-12 overflow-hidden">
@@ -62,7 +67,12 @@ function App() {
           setActiveTab={setActiveTab}
         />
         {selectedTrack && (
-          <TrackPlayer track={selectedTrack} handleNext={handleNext} handlePrev={handlePrev} />
+          <TrackPlayer
+            track={selectedTrack}
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+            isMobile={isMobile}
+          />
         )}
       </div>
     </div>

@@ -43,7 +43,7 @@ function TrackList({
   const [animationParent] = useAutoAnimate();
 
   return (
-    <div className="h-full flex flex-col gap-3 xs:gap-6 overflow-hidden flex-1 md:flex-auto md:w-80 lg:w-96 max-w-full">
+    <div className="h-full flex flex-col gap-3 xs:gap-6 overflow-hidden flex-1 md:flex-auto md:grow-[unset] md:w-80 lg:w-96 max-w-full">
       <div className="flex items-center gap-4 xs:gap-6 font-semibold px-2">
         <button
           onClick={() => setActiveTab(Tabs.ForYou)}
@@ -92,6 +92,7 @@ function TrackList({
             onSelect={setSelectedTrack}
           />
         ))}
+        <div className="w-full h-28 opacity-0 md:hidden" />
       </div>
     </div>
   );

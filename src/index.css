@@ -7,7 +7,7 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 20px;
+  width: 18px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -58,6 +58,15 @@
 .media-player .rhap_play-pause-button {
   height: 56px;
   width: 56px;
+}
+
+@media screen and (max-width: 768px) {
+  .media-player.minimized-view .rhap_play-pause-button {
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-65%);
+  }
 }
 
 .media-player .rhap_volume-container {
