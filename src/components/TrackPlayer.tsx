@@ -6,16 +6,18 @@ import { Track } from '../types';
 
 type TrackPlayerProps = {
   track: Track;
+  handleNext: (curTrack: Track) => void;
+  handlePrev: (curTrack: Track) => void;
 };
 
-function TrackPlayer({ track }: TrackPlayerProps) {
+function TrackPlayer({ track, handleNext, handlePrev }: TrackPlayerProps) {
   return (
-    <div className="media-player w-[480px] max-w-full flex flex-col gap-6">
+    <div className="media-player w-[420px] lg:w-[480px] max-w-full flex flex-col gap-6">
       <div className="flex flex-col gap-1 items-start">
         <p className="line-clamp-1 text-3xl font-semibold text-white">{track.name}</p>
         <p className="text-white/60 ">{track.artist}</p>
       </div>
-      <div className="mt-2">
+      <div className="md:mt-2">
         <img
           src={`https://cms.samespace.com/assets/${track.cover}`}
           alt="name"
@@ -33,6 +35,9 @@ function TrackPlayer({ track }: TrackPlayerProps) {
           play: <PlayIcon className="text-white" size={56} />,
           pause: <PauseIcon className="text-white" size={56} />,
         }}
+        onClickNext={() => handleNext(track)}
+        onClickPrevious={() => handlePrev(track)}
+        onEnded={() => handleNext(track)}
       />
     </div>
   );

@@ -11,7 +11,7 @@ function TrackItem({ item, selected, onSelect }: TrackItemProps) {
   return (
     <button
       className={clsx(
-        'p-4 rounded-lg min-w-96 flex items-center gap-4 text-white cursor-pointer w-full transition-colors',
+        'p-4 rounded-lg flex items-center gap-4 text-white cursor-pointer w-full transition-colors',
         {
           'bg-white/10': selected,
           'bg-transparent': !selected,
