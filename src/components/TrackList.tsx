@@ -5,6 +5,7 @@ import { Track } from '../types';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { CiSearch as SearchIcon } from 'react-icons/ci';
 import { useEffect, useState } from 'react';
+import TrackItemSkeleton from './TrackItemSkeleton';
 
 type TrackListProps = {
   tracks: Track[];
@@ -84,6 +85,15 @@ function TrackList({
         className="h-full overflow-y-auto overflow-x-hidden custom-scrollbar mt-4  xs:mt-0"
         ref={animationParent}
       >
+        {/* show loading skeleton while songs are fetched */}
+        {tracks.length === 0 && (
+          <>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <TrackItemSkeleton key={i} />
+            ))}
+          </>
+        )}
+
         {filteredTracks.map((item) => (
           <TrackItem
             key={item.id}
@@ -92,6 +102,11 @@ function TrackList({
             onSelect={setSelectedTrack}
           />
         ))}
+
+        {tracks.length !== 0 && filteredTracks.length === 0 && searchValue !== '' && (
+          <p className="text-white/80 text-xl text-center mt-12">No track found for this search</p>
+        )}
+
         <div className="w-full h-28 opacity-0 md:hidden" />
       </div>
     </div>

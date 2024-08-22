@@ -6,6 +6,7 @@ import { type Tab, Tabs } from './utils/constants';
 import Sidebar from './components/Sidebar';
 import TrackList from './components/TrackList';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import TrackPlayerSkeleton from './components/TrackPlayerSkeleton';
 
 function App() {
   const { data: allSongs } = useSongs();
@@ -68,13 +69,15 @@ function App() {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-        {selectedTrack && (
+        {selectedTrack ? (
           <TrackPlayer
             track={selectedTrack}
             handleNext={handleNext}
             handlePrev={handlePrev}
             isMobile={isMobile}
           />
+        ) : (
+          <TrackPlayerSkeleton />
         )}
       </div>
     </div>

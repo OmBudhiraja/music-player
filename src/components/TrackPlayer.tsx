@@ -1,4 +1,3 @@
-import 'react-h5-audio-player/lib/styles.css';
 import { Track } from '../types';
 import { baseUrl } from '../utils/constants';
 import { useState } from 'react';
@@ -24,7 +23,7 @@ function TrackPlayer({ track, handleNext, handlePrev, isMobile }: TrackPlayerPro
         }
       }}
       className={cn(
-        'flex transition-all duration-300 md:w-[420px] lg:w-[480px] max-w-full flex-col gap-6 fixed md:static',
+        'flex transition-all overflow-y-auto overflow-x-hidden duration-300 md:w-[420px] lg:w-[480px] max-w-full flex-col gap-6 fixed md:static',
         {
           'bottom-5 bg-black px-5 pb-0.5 pt-3 w-[95%] rounded-lg cursor-pointer gap-0.5':
             showMinimized && isMobile,
@@ -40,7 +39,7 @@ function TrackPlayer({ track, handleNext, handlePrev, isMobile }: TrackPlayerPro
       <div
         className={cn('flex md:flex-col gap-6', {
           'flex-row-reverse justify-end': showMinimized && isMobile,
-          'flex-col max-w-lg mx-auto': !showMinimized && isMobile,
+          'flex-col max-w-lg mx-auto flex-1': !showMinimized && isMobile,
         })}
       >
         <div
@@ -61,7 +60,7 @@ function TrackPlayer({ track, handleNext, handlePrev, isMobile }: TrackPlayerPro
           {!showMinimized && isMobile && (
             <button
               onClick={() => setShowMinimized(true)}
-              className="absolute text-white left-2 top-1/2 -translate-y-1/2"
+              className="absolute text-white left-2 top-2"
             >
               <MinimizeIcon size={24} />
             </button>
@@ -70,7 +69,7 @@ function TrackPlayer({ track, handleNext, handlePrev, isMobile }: TrackPlayerPro
         <div
           className={cn('md:mt-2', {
             'w-14 h-14': showMinimized && isMobile,
-            'mt-2': !showMinimized && isMobile,
+            'mt-2 flex-1 flex items-center': !showMinimized && isMobile,
           })}
         >
           <img
