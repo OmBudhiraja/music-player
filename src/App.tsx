@@ -35,7 +35,8 @@ function App() {
   function handleNext(curTrack: Track) {
     const idx = activeTabSongs.findIndex((item) => item.id === curTrack.id);
     if (idx === -1) {
-      // setSelectedTrack(allSongs);
+      setSelectedTrack(activeTabSongs[0]);
+      return;
     }
     setSelectedTrack(activeTabSongs[(idx + 1) % activeTabSongs.length]);
   }
@@ -43,7 +44,8 @@ function App() {
   function handlePrev(curTrack: Track) {
     const idx = activeTabSongs.findIndex((item) => item.id === curTrack.id);
     if (idx === -1) {
-      // setSelectedTrack(allSongs);
+      setSelectedTrack(activeTabSongs[0]);
+      return;
     }
     setSelectedTrack(activeTabSongs[(idx - 1 + activeTabSongs.length) % activeTabSongs.length]);
   }
@@ -55,7 +57,7 @@ function App() {
           ? 'rgba(0, 0, 0, 0.95)'
           : `linear-gradient(to bottom right, ${selectedTrack?.accent} 0%, #000 100%)`,
       }}
-      className="default-gradient h-screen transition-colors duration-700 p-4 md:p-8 flex flex-col items-center lg:flex-row xl:gap-28 gap-4"
+      className="default-gradient transition-colors h-screen p-4 md:p-8 flex flex-col items-center lg:flex-row xl:gap-28 gap-4"
     >
       <Sidebar />
       <div className="flex h-full items-center justify-center lg:justify-center w-full lg:gap-20 xl:gap-28 gap-8 md:gap-12 overflow-hidden">

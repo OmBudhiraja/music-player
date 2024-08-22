@@ -1,13 +1,10 @@
-import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import { IoPlayCircle as PlayIcon, IoPauseCircleSharp as PauseIcon } from 'react-icons/io5';
-import { FaForward as ForwardIcon, FaBackward as BackwardIcon } from 'react-icons/fa';
 import { Track } from '../types';
 import { baseUrl } from '../utils/constants';
 import { useState } from 'react';
 import { cn } from '../utils/utils';
 import { FaAngleDown as MinimizeIcon } from 'react-icons/fa6';
-import { HiDotsHorizontal as IndicatorIcon } from 'react-icons/hi';
+import AudioControls from './AudioControls';
 
 type TrackPlayerProps = {
   track: Track;
@@ -27,12 +24,11 @@ function TrackPlayer({ track, handleNext, handlePrev, isMobile }: TrackPlayerPro
         }
       }}
       className={cn(
-        'flex transition-colors duration-700 media-player md:w-[420px] lg:w-[480px] max-w-full flex-col gap-6 fixed md:static',
+        'flex transition-all duration-300 md:w-[420px] lg:w-[480px] max-w-full flex-col gap-6 fixed md:static',
         {
-          'bottom-5 bg-black px-5 pb-0 pt-3 w-[95%] rounded-lg cursor-pointer gap-0':
+          'bottom-5 bg-black px-5 pb-0.5 pt-3 w-[95%] rounded-lg cursor-pointer gap-0.5':
             showMinimized && isMobile,
-          'w-full inset-0 p-5': !showMinimized && isMobile,
-          'minimized-view': showMinimized && isMobile,
+          'w-full h-full bottom-0 p-5': !showMinimized && isMobile,
         }
       )}
       style={{
@@ -84,40 +80,14 @@ function TrackPlayer({ track, handleNext, handlePrev, isMobile }: TrackPlayerPro
           />
         </div>
       </div>
-      <div
-        className={cn('mx-auto w-full', {
-          'max-w-lg': !showMinimized && isMobile,
-        })}
-      >
-        <AudioPlayer
-          src={track.url}
-          showDownloadProgress={false}
-          showSkipControls={showMinimized && isMobile ? false : true}
-          showJumpControls={false}
-          {...(showMinimized && isMobile ? { customVolumeControls: [] } : {})}
-          customIcons={{
-            previous: <BackwardIcon className="text-white/60" size={26} />,
-            next: <ForwardIcon className="text-white/60" size={26} />,
-            play: <PlayIcon className="text-white" size={56} />,
-            pause: <PauseIcon className="text-white" size={56} />,
-          }}
-          customAdditionalControls={[
-            <button
-              className={cn(
-                'h-10 w-10 bg-white/10 rounded-full flex items-center justify-center p-2',
-                {
-                  hidden: showMinimized && isMobile,
-                }
-              )}
-            >
-              <IndicatorIcon className="text-white" size={21} />
-            </button>,
-          ]}
-          onClickNext={() => handleNext(track)}
-          onClickPrevious={() => handlePrev(track)}
-          onEnded={() => handleNext(track)}
-        />
-      </div>
+
+      <AudioControls
+        track={track}
+        showMinimized={showMinimized}
+        isMobile={isMobile}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+      />
     </div>
   );
 }
